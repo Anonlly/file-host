@@ -17,3 +17,4 @@ node server.js
 ```
 
 > if you want to run server in another port, edit the port constant in `server.js`
+> Oh, and don't forget to make new folder named `files` in project directory
