@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Up</title>
+</head>
+
+<body>
+    <form action="/file" id="form" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Send">
+    </form>
+    <br />
+
+    <a href="/files">Files</a>
+    <script>
+        // Create WebSocket connection.
+        const socket = new WebSocket('ws://localhost:8080/ws');
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            socket.send('nee-sama');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server ', event.data);
+        });
+
+    </script>
+</body>
+
+</html>

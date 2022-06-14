@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader</title>
+</head>
+
+<body>
+    <form id="main">
+        <input id="link" type="text" name="url" placeholder="Enter URL">
+        <input type="submit" value="Download">
+    </form>
+    <script>
+        function download(filename, url) {
+
+            const element = document.createElement('a');
+            element.setAttribute('href', url);
+            element.setAttribute('download', filename);
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        const form = document.getElementById('main')
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            const url = form.url.value
+            document.getElementById("link").value = ''
+            fetch("http://192.168.43.58:8080/pixiv?link=" + url).then(res => res.text()).then(data => {
+                console.log(data)
+                download(data.split("/")[data.split("/").length - 1], data)
+            })
+        })
+    </script>
+</body>
+
+</html>
